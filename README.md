@@ -162,3 +162,10 @@ Pontos que vale destacar ao apresentar o projeto:
 5. **Context API** — evita "prop drilling" e centraliza o estado do estoque.
 6. **React Router** — navegação SPA (sem reload de página).
 7. **Validação de UX** — confirmação antes de excluir, mensagens de erro claras.
+
+## Origem
+
+Projeto realizado em equipe. Esta cópia preserva o histórico e os créditos dos
+autores do repositório original Projeto-Final, anteriormente em
+`bellatrixishere/Projeto-Final`. O armazenamento é em memória e os produtos
+iniciais são dados de exemplo.

@@ -13,9 +13,10 @@
 
 import express from 'express';
 import cors from 'cors';
+import { validarProduto } from './validar-produto.js';
 
 const app = express();
-const PORT = 3001;
+const PORT = Number(process.env.PORT) || 3001;
 
 // cors libera o frontend (que roda em outra porta) a chamar essa API
 app.use(cors());
@@ -31,25 +32,6 @@ let estoque = [
 // contador auto-incremental para IDs dos novos produtos
 let proximoId = 3;
 
-/**
- * Função utilitária de validação reutilizada por POST e PUT.
- * Retorna { ok: true } se passou, ou { ok: false, status, erro } se falhou.
- */
-function validarProduto({ nome, quantidade, preco }) {
-  if (!nome || quantidade === undefined || preco === undefined) {
-    return { ok: false, status: 400, erro: 'Por favor, preencha todos os campos obrigatórios.' };
-  }
-  if (nome.trim().length < 3) {
-    return { ok: false, status: 400, erro: 'O nome do produto precisa ter pelo menos 3 caracteres.' };
-  }
-  if (Number(quantidade) < 0) {
-    return { ok: false, status: 422, erro: 'A quantidade em estoque não pode ser negativa.' };
-  }
-  if (Number(preco) < 0) {
-    return { ok: false, status: 422, erro: 'O preço não pode ser negativo.' };
-  }
-  return { ok: true };
-}
 
 // GET /produtos → retorna todo o estoque
 app.get('/produtos', (req, res) => {
