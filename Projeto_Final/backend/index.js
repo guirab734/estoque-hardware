@@ -40,7 +40,7 @@ app.get('/produtos', (req, res) => {
 
 // POST /produtos → cria novo produto
 app.post('/produtos', (req, res) => {
-  const { nome, quantidade, preco } = req.body;
+  const { nome, quantidade, preco } = req.body ?? {};
 
   const validacao = validarProduto({ nome, quantidade, preco });
   if (!validacao.ok) {
@@ -69,7 +69,7 @@ app.post('/produtos', (req, res) => {
 // PUT /produtos/:id → atualiza produto existente
 app.put('/produtos/:id', (req, res) => {
   const idProcurado = Number(req.params.id);
-  const { nome, quantidade, preco } = req.body;
+  const { nome, quantidade, preco } = req.body ?? {};
 
   const produto = estoque.find((item) => item.id === idProcurado);
   if (!produto) {
